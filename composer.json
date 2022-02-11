@@ -21,6 +21,6 @@
         "ext-hash": "*",
         "ext-json": "*",
 		"ext-simplexml": "*",
-		"ext-mongodb": "^1.8.0",
+		"ext-mongodb": "^1.8.0"
     }
 }
