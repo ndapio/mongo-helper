@@ -140,8 +140,6 @@ class MongoModelCollection {
         while($object = $this->shift()) {
             $object->created_time = $timestamp;
             $object->updated_time = $timestamp;
-            unset($object->id);
-            unset($object->b64id);
             $dataset[] = $object;
         }
         return $this->mongodb->insert($this->collection, $dataset);
@@ -158,8 +156,6 @@ class MongoModelCollection {
             }
             $object->created_time = $timestamp;
             $object->updated_time = $timestamp;
-            unset($object->id);
-            unset($object->b64id);
             $dataset = array($object);
             $results[] = $this->mongodb->insertIfNotExists($this->collection, $dataset, $query_key, $query_value);
         }
@@ -176,8 +172,6 @@ class MongoModelCollection {
                 while($object = $this->shift()) {
                     $object->created_time = $timestamp;
                     $object->updated_time = $timestamp;
-                    unset($object->id);
-                    unset($object->b64id);
                     $dataset[] = $object;
                 }
                 $results = $this->mongodb->insert($this->collection, $dataset);
@@ -197,6 +191,9 @@ class MongoModelCollection {
             } else {
                 $query_value = $object->id ?? "";
             }
+			if ($upsert) {
+				$object->created_time = $timestamp;
+			}
             $object->updated_time = $timestamp;
             $dataset[$index]["key"][$query_key] = $query_value;
             $dataset[$index]["documents"] = $object;

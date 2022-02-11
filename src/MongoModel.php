@@ -4,8 +4,8 @@ namespace NDAPio\MongoHelper;
 
 class MongoModel {
 
-    public $id;
-    public $b64id;
+    protected $id;
+    protected $b64id;
     public $created_time;
     public $updated_time;
 
