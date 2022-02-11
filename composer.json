@@ -1,0 +1,26 @@
+{
+    "name": "ndapio/mongo-helper",
+    "type": "library",
+    "description": "A MongoDB's CRUD wrapper for PHP. Neat and easy to use.",
+    "keywords": ["mongo","mongodb","crud","database"],
+    "homepage": "https://ndap.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anh Phung",
+            "email": "anh@ndap.io",
+            "homepage": "http://ndap.io",
+            "role": "Developer"
+        }
+    ],
+	"autoload": {
+        "psr-4": {"NDAPio\\MongoHelper\\": "src/"}
+    },
+	"require": {
+        "php": "*",
+        "ext-hash": "*",
+        "ext-json": "*",
+		"ext-simplexml": "*",
+		"ext-mongodb": "^1.8.0",
+    }
+}
