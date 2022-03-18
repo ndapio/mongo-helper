@@ -120,7 +120,11 @@ class MongoConnector {
                 }
             }
             try {
-                $count_command = new MongoDB\Driver\Command(['count' => $collection, "query" => $filters]);
+                if (count($filters) > 0) {
+                    $count_command = new MongoDB\Driver\Command(['count' => $collection, "query" => $filters]);
+                } else {
+                    $count_command = new MongoDB\Driver\Command(['count' => $collection]);
+                }
                 $count_cursor = $this->mongodb->executeCommand($this->database, $count_command);
                 $count_cursor_array = $count_cursor->toArray();
                 $cursor = $this->mongodb->executeCommand($this->database, $command);
