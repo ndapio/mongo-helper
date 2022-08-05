@@ -189,11 +189,11 @@ class MongoModelCollection {
             if ($query_key != "_id") {
                 $query_value = $object->$query_key ?? "";
             } else {
-                $query_value = $object->id ?? "";
+                $query_value = $object->getId() ?? "";
             }
-			if ($upsert) {
-				$object->created_time = $timestamp;
-			}
+	    if ($upsert) {
+		$object->created_time = $timestamp;
+	    }
             $object->updated_time = $timestamp;
             $dataset[$index]["key"][$query_key] = $query_value;
             $dataset[$index]["documents"] = $object;
