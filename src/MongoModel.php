@@ -36,5 +36,13 @@ class MongoModel {
     public function toArray() {
         return json_decode(json_encode($this), true);
     }
+    
+    public function getId() {
+        return $this->id;
+    }
+    
+    public function getB64Id() {
+        return $this->b64id;
+    }
 
 }
