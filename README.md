@@ -10,4 +10,5 @@ General idea:
 ## Guide
 
 You can extend the MongoModel and MongoModelCollection class to use in your project. 
+
 (To be updated later...)
