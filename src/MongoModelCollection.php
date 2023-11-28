@@ -105,6 +105,15 @@ class MongoModelCollection {
         self::loadDocuments($args);
     }
 
+    public function customCommand($type, $commands) {
+        $result = $this->mongodb->command([ $type => $this->collection, $commands ]);
+        if ($result["status"] == "success") {
+            return $result["result"];
+        } else {
+            return null;
+        }
+    }
+
     public function loadDocuments($query_args) {
         $records = $this->mongodb->query($this->collection, $query_args);
         $documents = array();
@@ -191,9 +200,9 @@ class MongoModelCollection {
             } else {
                 $query_value = $object->getId() ?? "";
             }
-	    if ($upsert) {
-		$object->created_time = $timestamp;
-	    }
+            if ($upsert) {
+                $object->created_time = $timestamp;
+            }
             $object->updated_time = $timestamp;
             $dataset[$index]["key"][$query_key] = $query_value;
             $dataset[$index]["documents"] = $object;
