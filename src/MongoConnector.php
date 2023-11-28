@@ -179,6 +179,30 @@ class MongoConnector {
         }
     }
 
+    public function command($commands) {
+        if ($this->connect()) {
+            try {
+                $command = new MongoDB\Driver\Command($commands);
+                $cursor = $this->mongodb->executeCommand($this->database, $command);
+                $result = $cursor->toArray();
+                return array(
+                    "status" => "success",
+                    "result"  => $result
+                );
+            } catch(MongoDB\Driver\Exception $e) {
+                return array(
+                    "status" => "error",
+                    "message" => $e->getMessage()
+                );
+            }
+        } else {
+            return array(
+                "status" => "error",
+                "message" => "can not connect to database"
+            );
+        }
+    }
+
     public function insertIfNotExists($collection, $dataset, $data_key, $data_value) {
         if ($this->connect()) {
             if (count($dataset) == 0) {
