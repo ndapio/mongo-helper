@@ -106,7 +106,7 @@ class MongoModelCollection {
     }
 
     public function customCommand($type, $commands) {
-        $result = $this->mongodb->command([ $type => $this->collection, $commands ]);
+        $result = $this->mongodb->command([ $type => $this->collection, 'pipeline' => $commands, 'cursor' => new \stdClass ]);
         if ($result["status"] == "success") {
             return $result["result"];
         } else {
